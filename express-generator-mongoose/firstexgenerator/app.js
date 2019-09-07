@@ -10,6 +10,17 @@ var dishRouter = require('./routes/dishRouter');
 var leaderRouter = require('./routes/leaderRouter');
 var promoRouter = require('./routes/promoRouter');
 
+const mongoose = require('mongoose')
+const Dishes = require('./models/dishes')
+
+// DB config
+const dba = require("./config/dbconnection").mongoURI;
+mongoose
+  .connect(dba)
+  .then(() => console.log("MongoDB successfully connected"))
+  .catch(err => console.log(err));
+
+
 var app = express();
 
 // view engine setup
@@ -29,12 +40,12 @@ app.use('/promotions', promoRouter);
 app.use('/dishes', dishRouter);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
+app.use(function (req, res, next) {
   next(createError(404));
 });
 
 // error handler
-app.use(function(err, req, res, next) {
+app.use(function (err, req, res, next) {
   // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
