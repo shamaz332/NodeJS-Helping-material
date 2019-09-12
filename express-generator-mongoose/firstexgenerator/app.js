@@ -11,8 +11,6 @@ var leaderRouter = require('./routes/leaderRouter');
 var promoRouter = require('./routes/promoRouter');
 
 const mongoose = require('mongoose')
-const Dishes = require('./models/dishes')
-
 // DB config
 const dba = require("./config/dbconnection").mongoURI;
 mongoose
